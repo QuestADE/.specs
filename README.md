@@ -33,6 +33,7 @@ ratified when it carries an accepted revision of its own.
 | Task | Document |
 | --- | --- |
 | Review every shipped and planned capability as a checklist | [FEATURES.md](FEATURES.md) |
+| Reconstruct the Armory editor, theme and configuration capabilities | [FEATURES.md](FEATURES.md#reconstruction-target) |
 | Understand what Quest ADE is and what it refuses to be | [VISIONS.md](VISIONS.md) |
 | Review delivery order, gates and the executable task queue | [ROADMAP.md](ROADMAP.md) |
 | Learn the vocabulary: Area, Project, Spec, Resource, Seat, Destination | [CONCEPTS.md](CONCEPTS.md) |

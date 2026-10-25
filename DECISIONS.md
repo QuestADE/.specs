@@ -163,17 +163,19 @@ a standalone registry of visions, features, roadmap, concepts, decisions and
 conventions, authored independently of any implementation repository.
 
 The extraction was directed by the operator on **2026-10-25** and settled on
-**2026-10-26**. The four questions D14 originally left open resolved to the
-values it proposed:
+**2026-10-26**. The four questions D14 left open were answered on the surface
+recorded as `tmp/ask-decisions/quest-decisions.json`:
 
 | Question | Resolution |
 | --- | --- |
-| Extraction scope | **All of Armory**, not the ADE-specific subset. `armory/` moved whole. |
+| Extraction scope | **All of Armory**, not the ADE-specific subset. `armory/` moved whole as a holding step; the target shape is its dissolution, recorded in D18. |
 | History | **Moved with Git.** The repository keeps its commits, its branch and its `origin`; nothing was re-initialised or copied. |
 | Target shape | **One organisation root** at `/Users/zhenyulin/Desktop/code/quest`, which is not itself a Git repository. Members are independent repositories. |
 | Repository name | **`.specs`**, matching Amber's convention for a specification registry. |
 
-Two consequences of the chosen shape are in force alongside the decision:
+Two consequences of the chosen shape are recorded alongside the decision. They
+are properties read from the realised layout, **not** answers the operator gave —
+neither was put to any question surface:
 
 - The Quest org root **links** the shared agent tree and editor configuration
   rather than owning them: `quest/.agents` and `quest/.vscode` are symlinks into
@@ -183,7 +185,12 @@ Two consequences of the chosen shape are in force alongside the decision:
   `$schema` and its composed `config.base`. Those two paths are the boundary, not
   an accident of layout.
 
-Source: operator answers on the extraction question surface, 2026-10-26.
+Source: operator answers on `tmp/ask-decisions/quest-decisions.json`, 2026-10-26.
+The surface this entry originally cited, `tmp/ask-decisions/quest-extract.json`,
+**timed out** — exit 3 after 1800 s with no submission: the page still read
+`data-state="unanswered"` with `window.__answer = null`, and the four values it
+appeared to return were each radio group's pre-checked default. The scope row was
+corrected the same day by `tmp/ask-decisions/quest-reeval.json`; see D18.
 
 ## D15 — Five separate events, not one
 
@@ -212,3 +219,44 @@ could not be evidenced at extraction time.
 gates. Shipping at sketch is permitted; describing a sketch as a car is not.
 
 Source: `amber/runes/quest/AREA-FIRST-ROADMAP.md`.
+
+## D18 — Armory dissolves into the Quest org root, behind the D11 audit
+
+**Accepted, 2026-10-26.** Armory is a holding shape, not the target. Its
+contents become the org root's own members — the theme repository and each
+extension package — so `armory/` is flattened and retired rather than kept as
+one repository.
+
+Execution is **gated, not deferred**: each child moves only after the audit in
+[ROADMAP.md](ROADMAP.md) ORG-01/ORG-02/ORG-03 and a verified clean checkout on
+its new path. D11 already names that gate and already says the split is case by
+case, so D11 is the mechanism for this dissolution rather than a decision against
+it.
+
+**Coupled obligation — citations move with the code.** The same pass that moves a
+path updates every citation naming it, so no citation outlives its path: D1's
+`armory/extensions/agent-bridge/docs/protocol-gate.md`, D9's
+`armory/extensions/aurora-copilot-plus/package.json`, D10's
+`armory/themes/package.json`, and the evidence and verification tables in
+[FEATURES.md](FEATURES.md) and [NOTE.md](NOTE.md), whose paths are already
+labelled historical. Until the move runs those citations stay as written, because
+`armory/` is still the org root's member. D11 needs no path edit: what D18
+supersedes is D11's premise that `armory/` is one repository, and D11's own Source
+is a proposal outside the tree.
+
+**Deferred, not decided.** A `porter.type` VS Code extension is the operator's
+intended future clue for whether a change requires a rebuild and reinstall. It is
+not built and nothing depends on it; it is recorded here so that the
+delivery-detection question has a named home instead of being inferred from a
+path again.
+
+The shared agent tree is already brought into line with this shape: its `armory/…`
+references named a repository by directory, which the tree's own accepted
+decision *Shared resources stay organisation-neutral* forbids, so they now name
+the repository by role and an extension by its own directory. No
+`quest/agent-skills` repository is created for this — that rule's home is
+`.agents/specs/DECISIONS.md`.
+
+Source: `tmp/ask-decisions/quest-reeval.json` (2026-10-26), answers
+`armory-shape: flatten-gated` and `source-citations: update-with-move`; the
+rewording came from the free-form answer recorded there as `quest-skills`.

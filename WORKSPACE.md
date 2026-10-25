@@ -39,9 +39,11 @@ One of the three roots above exists: **Quest ADE**, created 2026-10-26 at
 `/Users/zhenyulin/Desktop/code/quest` — `quest`, not the `questade/` this plan
 proposed. It holds `.specs` and `armory` as independent repositories and is **not
 itself a Git repository**, which is the "no parent Git repository is required"
-rule in force.
+rule in force. `armory` is a **holding member, not the target shape**: its
+dissolution into the root is [D18](DECISIONS.md#d18--armory-dissolves-into-the-quest-org-root-behind-the-d11-audit),
+gated behind the ORG-01/ORG-02/ORG-03 audit in [ROADMAP.md](ROADMAP.md).
 
-Two members are transitional rather than owned, and both are recorded here because
+Three members are transitional rather than owned, and all are recorded here because
 they contradict a requirement further down:
 
 - `.agents` and `.vscode` are **symlinks into the Aurora checkout**. That is the
@@ -49,6 +51,15 @@ they contradict a requirement further down:
   by link rather than by compilation, so the root inherits Eikuro's settings
   composition — including `search.exclude` entries derived from
   `amber/components.yaml`, which lists Aurora's members, not Quest's.
+- `.claude` and `.codex` are the **native harness entry points**, linked through
+  the `.agents` link in exactly the form the shared tree's manifest declares
+  (`.claude: .agents/harnesses/claude`, `.codex: .agents/harnesses/codex`).
+  Porter materialises these at a consumer root; this root is not a Porter
+  consumer, so they are created by hand. They are not optional: the shared MCP
+  adapters launch through a repository-root-relative path
+  (`.claude/../../tools/jev-mcp`), which resolves only where that entry point
+  exists, so an org root without it reports `No such file or directory` and exits
+  127 for every shared MCP server.
 - `armory/porter.yaml` reaches back across the org boundary for its `$schema`
   (`../../aurora/porter/schemas/manifest.json`) and its composed `config.base`
   (`../../aurora/tabjs`). That contradicts the **"must work without sibling
