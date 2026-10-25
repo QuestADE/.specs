@@ -1,0 +1,45 @@
+# Quest ADE component inventory — target-state registration.
+# Extracted from amber/components.yaml on 2026-10-25; the Amber snapshot remains
+# the current-state Eikuro inventory. See AREAS.md and DECISIONS.md D2, D11.
+# No GitHub transfer or local checkout migration is implied by this file.
+components:
+  - name: .specs
+    type: docs
+    private: false
+    description: Quest ADE specification authority — visions, features, roadmap, decisions.
+  - name: armory
+    type: config
+    private: false
+    description: >
+      Reusable agent editor surfaces. Mixed repository: extension packages are
+      extraction candidates, Eikuro-specific editor settings and themes are not.
+  - name: squire
+    type: cli
+    private: false
+    description: >
+      Attempt execution and the quest CLI verbs. Owns attempts, retries,
+      budgets and results; other surfaces project them read-only.
+  - name: board
+    type: tool
+    private: false
+    description: >
+      Card ingest into the local quest store and a read-only workbench.
+      Compatibility inventory only; heavy Quest UI is a retirement candidate.
+  - name: anatomy
+    type: docs
+    private: false
+    description: >
+      Observed projection of workspace topology and the component registry.
+      A visualization and query tool, never a normative relationship store.
+  - name: .agents
+    type: config
+    private: true
+    description: >
+      Shared agent instructions, workflow tooling and hook contract. Consumed
+      as an external dependency; its current location is transition state.
+  - name: porter
+    type: config
+    private: false
+    description: >
+      External dependency from the Opbi Area. Materialises managed
+      configuration; Quest ADE consumes it and does not host its source.

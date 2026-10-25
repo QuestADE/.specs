@@ -1,0 +1,18 @@
+# Quest ADE specification authority — authored content only.
+
+# Local scratch and agent working state.
+/tmp/
+
+# Generated or materialised output.
+/output/
+/.extraction/
+
+# Editor and OS noise.
+.DS_Store
+*.vsix
+node_modules/
+__pycache__/
+*.py[cod]
+
+# Local-only materialised agent entry.
+/.agents
