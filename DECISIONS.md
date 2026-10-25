@@ -158,20 +158,32 @@ Source: `amber/runes/quest/EXTENSIONS.md` status block.
 
 ## D14 — `.specs` is the Quest ADE specification authority
 
-**Provisional, directed.** This repository is the Quest ADE equivalent of Amber:
+**Accepted, 2026-10-26.** This repository is the Quest ADE equivalent of Amber:
 a standalone registry of visions, features, roadmap, concepts, decisions and
 conventions, authored independently of any implementation repository.
 
-The extraction was **directed by the operator on 2026-10-25**. It has not been
-reviewed into acceptance, and four questions remain open:
+The extraction was directed by the operator on **2026-10-25** and settled on
+**2026-10-26**. The four questions D14 originally left open resolved to the
+values it proposed:
 
-- whether the extraction scope is all of Armory or only the ADE-specific subset;
-- whether extracted content moves with its Git history or is referenced in place;
-- whether the target is one organisation root or a single repository;
-- whether the specifications repository keeps the name `.specs`.
+| Question | Resolution |
+| --- | --- |
+| Extraction scope | **All of Armory**, not the ADE-specific subset. `armory/` moved whole. |
+| History | **Moved with Git.** The repository keeps its commits, its branch and its `origin`; nothing was re-initialised or copied. |
+| Target shape | **One organisation root** at `/Users/zhenyulin/Desktop/code/quest`, which is not itself a Git repository. Members are independent repositories. |
+| Repository name | **`.specs`**, matching Amber's convention for a specification registry. |
 
-Until those are answered, every document in this repository carries a
-**provisional** status and cites the Amber source it derives from.
+Two consequences of the chosen shape are in force alongside the decision:
+
+- The Quest org root **links** the shared agent tree and editor configuration
+  rather than owning them: `quest/.agents` and `quest/.vscode` are symlinks into
+  the Aurora checkout. Quest therefore inherits Aurora's settings composition
+  until it owns a base of its own — see [WORKSPACE.md](WORKSPACE.md).
+- `armory/porter.yaml` therefore reaches back across the org boundary for its
+  `$schema` and its composed `config.base`. Those two paths are the boundary, not
+  an accident of layout.
+
+Source: operator answers on the extraction question surface, 2026-10-26.
 
 ## D15 — Five separate events, not one
 

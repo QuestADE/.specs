@@ -26,6 +26,33 @@ directory name or a plan title.
 | `amber/proposals/AMBER-SPEC-AUTHORITY.md` | [DECISIONS.md](DECISIONS.md) D3 |
 | `amber/components.yaml` | [components.yaml](components.yaml) |
 
+The table records where content was **read from on 2026-10-25**, when Armory
+still sat at `aurora/armory`. Those paths are historical; `armory/` is now
+`quest/armory/`.
+
+## Acceptance and relocation
+
+The extraction was accepted on **2026-10-26** ([D14](DECISIONS.md)), which also
+settled where the implementation repositories live. Four facts from that step are
+easy to get wrong later:
+
+- **The Quest org root is not a Git repository.**
+  `/Users/zhenyulin/Desktop/code/quest` holds independent repositories as direct
+  children — `.specs` and `armory`. There is no root commit to check out and no
+  root remote.
+- **The shared agent tree and editor configuration are linked, not owned.**
+  `quest/.agents` and `quest/.vscode` are symlinks into the Aurora checkout, so
+  Quest inherits Aurora's settings composition — including the `search.exclude`
+  entries derived from `amber/components.yaml`, which lists Aurora's members, not
+  Quest's. See [WORKSPACE.md](WORKSPACE.md).
+- **Armory reaches back across the org boundary.** `armory/porter.yaml` resolves
+  its `$schema` to `../../aurora/porter/schemas/manifest.json` and its composed
+  `config.base` to `../../aurora/tabjs`, because neither is a sibling of the Quest
+  org root. A Quest-owned editor-config base would remove both references.
+- **Armory's `README.md` links inside it were repointed, not copied.** Its local
+  `.editorconfig`, `.markdownlint.yaml` and `cspell.config.yaml` are untracked
+  symlinks to `../../aurora/tabjs/`, so the repository tree itself stayed clean.
+
 ## Deliberately not mirrored
 
 Amber carries four files that have no Quest ADE equivalent, and creating empty

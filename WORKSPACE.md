@@ -33,6 +33,28 @@ Workspace/
     <agent-tools>/
 ```
 
+## Realised root
+
+One of the three roots above exists: **Quest ADE**, created 2026-10-26 at
+`/Users/zhenyulin/Desktop/code/quest` — `quest`, not the `questade/` this plan
+proposed. It holds `.specs` and `armory` as independent repositories and is **not
+itself a Git repository**, which is the "no parent Git repository is required"
+rule in force.
+
+Two members are transitional rather than owned, and both are recorded here because
+they contradict a requirement further down:
+
+- `.agents` and `.vscode` are **symlinks into the Aurora checkout**. That is the
+  "locally materialised shared agent entry" the target layout names, but reached
+  by link rather than by compilation, so the root inherits Eikuro's settings
+  composition — including `search.exclude` entries derived from
+  `amber/components.yaml`, which lists Aurora's members, not Quest's.
+- `armory/porter.yaml` reaches back across the org boundary for its `$schema`
+  (`../../aurora/porter/schemas/manifest.json`) and its composed `config.base`
+  (`../../aurora/tabjs`). That contradicts the **"must work without sibling
+  checkouts"** requirement under Configuration materialisation; removing it needs
+  a Quest-owned editor-config base.
+
 ## Root contract
 
 **Default: open one organisation root as one VS Code folder.** That root *is* the

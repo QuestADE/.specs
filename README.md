@@ -16,15 +16,17 @@ implementation repository.
 
 ## Status
 
-**Provisional.** Every document here was extracted from the Eikuro Amber registry
-(`amber/`) on 2026-10-25 and has not been reviewed into acceptance. Each file
-states the Amber source it derives from. Treat a claim here as a *recorded
-extraction*, not a ratified requirement, until the owning section carries an
-accepted revision.
+**Accepted, 2026-10-26.** The specification authority itself is ratified: this
+repository is the Quest ADE equivalent of Amber and owns the requirements in it.
+The extraction that populated it was directed by the operator on 2026-10-25 from
+the Eikuro Amber registry (`amber/`) and settled on 2026-10-26 — see
+[D14](DECISIONS.md).
 
-The extraction is deliberately conservative: where Amber records a gap, an
-unavailable measurement or an unbuilt surface, this repository reproduces the
-gap rather than asserting the capability.
+Ratifying the authority does not ratify every claim inside it. Documents here were
+extracted rather than re-derived, so each one cites the Amber source it came from;
+where Amber records a gap, an unavailable measurement or an unbuilt surface, this
+repository reproduces the gap rather than asserting the capability. A section is
+ratified when it carries an accepted revision of its own.
 
 ## Reading order
 
