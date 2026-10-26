@@ -1,0 +1,45 @@
+# yaml-language-server: $schema=../../aurora/porter/schemas/manifest.json
+---
+#
+# component metadata
+#
+private: false
+type: docs
+
+github: "QuestADE"
+name: .specs
+description: Quest ADE specification authority — visions, features, roadmap, decisions.
+maintainer:
+  - Zhenyu Lin <zhenyu.lin@opbi.org>
+
+languages:
+  - markdown
+
+agents: ../../aurora/.agents
+
+#
+# component repo config
+#
+
+config:
+  # Cross-org reference: this repository sits in the Quest org root
+  # (`code/quest/.specs`), so the `tab` docs base is not a sibling any more. It
+  # remains an Aurora member; the Quest org owns no editor-config base yet.
+  base: ../../aurora/tab
+
+  # the key's presence — not its content — registers .gitignore as a managed
+  # output, so the shared rules above the `# Repo-specific Entries` boundary
+  # keep refreshing from tab; entries below that boundary survive
+  # `porter config` verbatim, so a rule declared both here and below is
+  # appended twice — keep each rule in exactly one place
+  .gitignore: | #ini
+    #
+    ##   Repo-specific Entries
+    #
+
+    ## Non-dot scratch and packaging noise
+    # > the base's `.*` rule already covers dot-named trees and files
+    *.py[cod]
+    *.vsix
+    __pycache__/
+    node_modules/

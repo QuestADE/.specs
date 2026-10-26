@@ -1,18 +1,66 @@
-# Quest ADE specification authority — authored content only.
+#
+##   Blacklist
+#
 
-# Local scratch and agent working state.
-/tmp/
+## Global Convention
+# > .* files and dirs would be ignored globally, add targeted exception when needed
+.*
 
-# Generated or materialised output.
-/output/
-/.extraction/
+## Tooling Output Dirs
+# > conventional names ignored globally, add targeted exception when needed
+*.log
+*cache*/
+coverage/
+log/
+logs/
+report/
+temp/
+tmp/
 
-# Editor and OS noise.
-.DS_Store
-*.vsix
-node_modules/
-__pycache__/
+## Package Build Root Output
+/build/
+/dist/
+/Formula/
+/out/
+/releases/
+
+## Src Output Root Dir
+/output/*
+/storage
+
+## Symlinks Escaped .*
+# > repositories that own real copies re-include them in Repo-specific Entries
+/AGENTS.md
+/cspell.config.yaml
+/Dockerfile
+/justfile
+harnesses/claude/skills
+
+#
+##   Whitelist
+#
+
+## Git Metadata Files
+# > explicit names keep .git and .github ignored by file walkers too
+!.gitattributes
+!.gitignore
+!.gitkeep
+
+## .github for copilot configs and github actions
+# > `.github` is kept ignored, use `git add -f` to track github action workflows
+
+## Agent Discovery Root Exceptions
+# > keep /.agents, /.vscode symlinks ignored, but make their content discoverable
+!/.agents/
+!/.vscode/
+
+#
+##   Repo-specific Entries
+#
+
+## Non-dot scratch and packaging noise
+# > the base's `.*` rule already covers dot-named trees and files
 *.py[cod]
-
-# Local-only materialised agent entry.
-/.agents
+*.vsix
+__pycache__/
+node_modules/
