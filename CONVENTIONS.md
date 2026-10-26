@@ -73,6 +73,32 @@ rather than editing a materialised file, which the compiler will overwrite.
 - Never make a public extension or CLI require an Amber adapter; the adapter is
   optional and authorised.
 
+## Agent memory and durable knowledge
+
+An assistant's built-in memory store is a **cache**, not a home. On this machine
+it sits outside every repository and outside Git:
+
+| Scope | Path | Lifetime |
+| --- | --- | --- |
+| User memory | `~/Library/Application Support/Code/User/globalStorage/github.copilot-chat/memory-tool/memories/` | every workspace on this machine |
+| Repository memory | `~/Library/Application Support/Code/User/workspaceStorage/<hash>/GitHub.copilot-chat/memory-tool/memories/repo/` | one registration of one workspace, keyed by a storage hash |
+
+Neither is reviewed in a pull request, shared with a collaborator, or readable
+by another harness, and the second disappears when that workspace storage is
+cleared. A fact that matters therefore has to be written somewhere else.
+
+Route it to the document that owns it:
+
+- **Quest ADE intent, contracts, decisions and known gaps** — this repository.
+- **Implementation facts about a package** — that package's own README, or its
+  `docs/` directory, in the repository that owns it.
+- **A reusable agent technique** — the skill in the shared agent tree that owns
+  that technique, never this repository.
+- **Session working state** — the org root's ignored `tmp/`, which is disposable
+  and is not a record.
+
+A memory entry that matters is a prompt to write one of the above.
+
 ## Markdown rendering
 
 Checklists use nested bullet lists with `- [x]` and `- [ ]`, not tables. GitHub

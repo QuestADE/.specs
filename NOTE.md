@@ -68,6 +68,45 @@ twins would imply authority this repository does not have:
 - **`runes/`** — per-project runes. Quest ADE has no project corpus of its own
   until QN-002 defines Area/Project identity.
 
+## Implemented baseline — `quest-core`, 2026-10-26
+
+`quest-core` is the org root's pipeline repository and carries nine delivered
+commissions. It is an npm-workspaces monorepo of nine TypeScript ESM packages
+that run on Node's native type stripping — no build step and no runtime
+dependency. Its gate is `npm run check` (`tsc --noEmit`, then `node --test`):
+**359 tests, clean, observed 2026-10-26**.
+
+| Package | Commission |
+| --- | --- |
+| `@quest/identity` | QN-002 |
+| `@quest/dag-baseline` | DAG-01 |
+| `@quest/contracts` | QADE-CORE-01 |
+| `@quest/protocol` | DAG-02 |
+| `@quest/verification` | QN-013 |
+| `@quest/run-store` | QADE-RUN-01 |
+| `@quest/scheduler` | DAG-03 |
+| `@quest/adapters` | PEER-01 |
+| `@quest/soul` | SO-01 |
+
+QADE-CORE-01, QADE-RUN-01, PEER-01 and SO-01 are commissions from the area-first
+plan and have no row in [FEATURES.md](FEATURES.md) §2.3 or §2.4; their evidence
+is the package and its `docs/` entry in `quest-core`.
+
+Three gaps were found by independent verification and are carried, not smoothed
+out:
+
+- **`@quest/soul` labels the live `.agents` tree entirely authored.** That tree
+  ships no `soul.manifest.json`, and the reader does not apply Porter's
+  `manifest.yaml` symlink declarations, so 109 of 109 nodes read `authored`
+  while several are materialised mounts. The label is honest for the
+  declarations it reads; it is not yet useful for that tree.
+- **`@quest/scheduler` enforces its concurrency width in `nextWave`, not in
+  `applyEvent`.** A caller that records `start` directly can exceed the bound,
+  and the next plan reports `capacity: 0` rather than a refusal.
+- **`@quest/adapters`' headless candidate is a fixture stub.** The bake-off
+  proves that one contract carries two adapters; it does not prove a Codex or
+  Claude integration.
+
 ## What could not be evidenced
 
 These gaps are carried in [FEATURES.md](FEATURES.md) §2.5 rather than resolved
@@ -75,9 +114,12 @@ here, because resolving them requires measurement, not writing.
 
 - **Host startup time, Extension Host idle RAM and idle CPU are unavailable.**
   No measurement was taken. This is `unavailable`, not zero.
-- **No end-to-end instance exists.** Zero cards have reached review, so no
-  idea-to-review path has been recorded. The blocker is the missing Inbox →
-  card promotion, which is the E1 `Promote to Specs` gap.
+- **No end-to-end surface instance exists.** Nine core-slice commissions are
+  delivered and verified in `quest-core` (see the baseline above), but all of
+  them are headless libraries: no Inbox → card promotion and no editor surface
+  exists, so no idea-to-review path has been walked by a person. The blocker
+  remains the missing Inbox → card promotion, which is the E1 `Promote to
+  Specs` gap.
 - **Source and installed builds differ.** `agent-quest` 0.1.0 in Armory declares
   four commands; the installed identity is 0.2.38 produced by `board` with two.
   A rebuild would install a second extension rather than replacing the first.

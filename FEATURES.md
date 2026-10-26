@@ -824,7 +824,7 @@ identifier.
 From `amber/runes/quest/AREA-FIRST-ROADMAP.md`. IDs are stable.
 
 - [x] **QN-001** (P0) — grounded inventory of shipped Board, Specs and native session features and their consumer dependencies. *Delivered as `amber/runes/quest/INVENTORY.md` (observed 2026-10-24); not yet accepted.*
-- [ ] **QN-002** (P0) — define Area/Project/Spec/Resource stable IDs and the project relationship contract
+- [x] **QN-002** (P0) — define Area/Project/Spec/Resource stable IDs and the project relationship contract. *Delivered as `quest-core` `@quest/identity` (2026-10-26); contract in `quest-core/docs/identity-contract.md`.*
 - [ ] **QN-003** (P0) — enforce spontaneous-session spec reconciliation and the provisional user-feedback loop in `.agents`
 - [ ] **QN-004** (P0) — Marshal supervisor, fresh Squire worker and verifier profiles
 - [ ] **QN-005** (P0) — native `agent-specs` resolves and previews canonical Amber nodes with no Board service dependency
@@ -835,7 +835,7 @@ From `amber/runes/quest/AREA-FIRST-ROADMAP.md`. IDs are stable.
 - [ ] **QN-010** (P2) — retire Board integrations and the heavy Quest UI after a compatibility audit
 - [ ] **QN-011** (P2) — optional cross-harness `agent-bridge` protocol, only if native session messaging fails a real case
 - [ ] **QN-012** (P2) — user study measuring iterative spec quality and accepted throughput
-- [ ] **QN-013** (P0) — verification infrastructure: native browser/Playwright, Extension Host and notebook routes with a fresh-Squire evidence receipt
+- [x] **QN-013** (P0) — verification infrastructure: native browser/Playwright, Extension Host and notebook routes with a fresh-Squire evidence receipt. *Delivered as `quest-core` `@quest/verification` (2026-10-26); all three routes produce a receipt, and a route that cannot run records `unavailable` with its remediation. See `quest-core/docs/verification.md`.*
 - [ ] **QN-014** (P1) — minimal outcome/trace/error telemetry plus a profiling decision gate
 - [ ] **QN-015** (P1) — reversible Entire session/commit provenance pilot with Git/GitHub compatibility
 - [ ] **QN-016** (P1) — daily goal-alignment skill and shared `.agents` schedule validation
@@ -852,9 +852,9 @@ commissions, not completed work.
 - [ ] **ORG-03** (P0) — verify QuestADE tool access and catalogue what to extract, leave or retire; no private Amber content in public exports
 - [ ] **WS-01** (P0) — organisation-root workspace prototype with compiled `.vscode` defaults and bounded local links
 - [ ] **WS-02** (P0) — single-root switching and repo-level focus acceptance tests
-- [ ] **DAG-01** (P0) — baseline the current `agent-orchestrate` / Marshal / Squire session DAG: graph shape, serial host, conflicted writes, early unblock, verification/retry, token/time/RSS and context costs
-- [ ] **DAG-02** (P0) — portable validated task/receipt protocol, provider capability discovery, safe admission, and headless Codex/Claude adapter proofs
-- [ ] **DAG-03** (P1) — incremental ready-set and critical-path dispatch with bounded concurrency; retry only failed nodes
+- [x] **DAG-01** (P0) — baseline the current `agent-orchestrate` / Marshal / Squire session DAG: graph shape, serial host, conflicted writes, early unblock, verification/retry, token/time/RSS and context costs. *Delivered as `quest-core` `@quest/dag-baseline` (2026-10-26); reports shape, ready sets, critical path and conflict candidates, and records token/RSS cost as `unavailable` rather than estimating it. See `quest-core/docs/dag-baseline.md`.*
+- [x] **DAG-02** (P0) — portable validated task/receipt protocol, provider capability discovery, safe admission, and headless Codex/Claude adapter proofs. *Delivered as `quest-core` `@quest/protocol` (2026-10-26); JSON Schema task and receipt validation, admission refusals, and two headless fixture adapters. The adapters are contract stubs, not Codex or Claude integrations. See `quest-core/docs/protocol.md`.*
+- [x] **DAG-03** (P1) — incremental ready-set and critical-path dispatch with bounded concurrency; retry only failed nodes. *Delivered as `quest-core` `@quest/scheduler` (2026-10-26); incremental update equals a full recomputation across a seeded generator. The width is enforced in `nextWave`, not in the state machine.*
 - [ ] **APP-01** (P1) — one real end-to-end vertical slice exercising spec → parallel implementation → independent evidence → human acceptance
 - [ ] **LIFE-02/03** (P1) — weekly ideas/goals/commitments portfolio review with existing authorised tools
 - [ ] **PORTER-UI** (P1) — CodeLens/actions on `porter.yaml`: `config --dry --json` preview and diff, explicit compile, source→consumer cascade and reverse provenance
