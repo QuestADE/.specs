@@ -104,3 +104,32 @@ A memory entry that matters is a prompt to write one of the above.
 Checklists use nested bullet lists with `- [x]` and `- [ ]`, not tables. GitHub
 does not render a checkbox inside a table cell, and a ledger whose states do not
 render is not a ledger.
+
+## Plan pages
+
+`.quest/` holds the delivery-plan page family: `index.html` (the plan of
+releases), `milestones.html` (one row per release), `slice-0N-<id>.html` (one page
+per vertical slice) and `plan.json` (the derived data the pages read).
+
+- **`data.js` is the single source and `_build.mjs` writes every generated page.**
+  Edit the data or the builder, then run `node _build.mjs` from inside `.quest`.
+  Hand-editing a generated page loses the change on the next build.
+- **Hand-authored alongside it**: `review.html`, `extensions-mockup.html`,
+  `quest-mock.html`, `codicon.css`, `dag.css`, `dag.js`. The builder does not
+  overwrite these.
+- **A card's colour is its container's class**, read through
+  `window.QUEST_CONTAINERS[REPOS[id].repo].cls` — never `REPOS[id].cls`. A legend
+  row that names a per-card class a container does not have matches no card.
+- **Tag vocabulary** is empty, `new`, `deferred`, `superseded` and `done`; `done`
+  marks a delivered card. The builder validates no tag string, and the graph and
+  the register both render tags in the browser, so verify a tag change by
+  rendering the page rather than by grepping the generated HTML.
+- **The build is a gate, not a convenience**: it exits non-zero on an unknown
+  card, a missing milestone, a missing slice, a duplicate card and a forward
+  dependency, and it prints the milestone sizes, cumulative totals and maximum
+  round for comparison against the previous run.
+
+`.quest/` is not a tracked member of any repository at present: the org root is
+not a Git repository ([DECISIONS.md](DECISIONS.md) D14), and no member tracks the
+directory. Its durability is therefore the same as any other uncommitted local
+file until a member adopts it.

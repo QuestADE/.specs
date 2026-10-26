@@ -66,6 +66,32 @@ they contradict a requirement further down:
   checkouts"** requirement under Configuration materialisation; removing it needs
   a Quest-owned editor-config base.
 
+## Members and member operations
+
+The root's members are `.specs`, `armory`, `quest-core` and `rune`; the unversioned
+`README.md` at the root is the member index and this document is the contract.
+
+- **Links**: `.agents -> ../aurora/.agents` and `.vscode -> ../aurora/.vscode`;
+  `.claude` and `.codex` resolve through the `.agents` link.
+- **Moving a repository into this root from Aurora**: `mv` the directory — it
+  carries its own `.git` — then repoint each `../tabjs/<x>` symlink to
+  `../../aurora/tabjs/<x>`, and in `porter.yaml` set
+  `$schema` to `../../aurora/porter/schemas/manifest.json` and `config.base` to
+  `../../aurora/tabjs`. A `.agents -> ../.agents` link stays valid because the
+  root links the same shared tree. Worked examples: `armory/porter.yaml`,
+  `quest-core/porter.yaml`.
+- **Two registries, two purposes**: `.specs/components.yaml` is this repository's
+  *target-state* inventory; `aurora/amber/components.yaml` is an untracked
+  local current-state catalogue from which `aurora/.vscode/settings.json` and
+  `aurora/.ignore` are generated, and Quest inherits both through its links.
+
+**Known gap:** `.specs/components.yaml` does not yet register `quest-core` or
+`rune`, and it still describes `armory` as a single repository while
+[D18](DECISIONS.md#d18--armory-dissolves-into-the-quest-org-root-behind-the-d11-audit)
+has it dissolving. The registry is deliberately target-state, so this is a
+pending edit rather than a defect — but until it is made, a reader of
+`components.yaml` alone sees the pre-dissolution shape.
+
 ## Root contract
 
 **Default: open one organisation root as one VS Code folder.** That root *is* the
